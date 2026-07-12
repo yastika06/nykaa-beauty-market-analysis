@@ -9,15 +9,8 @@ HAVING avg_discount>(SELECT avg(discount_pct) from brands)
 ORDER BY avg_discount DESC
 LIMIT 10;
 
---Q2: THE STOCKOUT SIGNAL
---(Compare average rating and rating_count for in-stock vs out-of-stock products)
-SELECT in_stock, avg(rating) as avg_rating,
-avg(rating_count) as avg_rating_count,
-count(*) as product_count
-FROM brands
-group by in_stock ;
 
---Q3: THE MERCHANDISING AUDIT 
+--Q2: THE MERCHANDISING AUDIT 
 --(Do FEATURED/ BESTSELLER tags actually correspond to better performance?)
 SELECT tags,
 AVG(rating) AS avg_rating,
@@ -27,7 +20,7 @@ FROM brands
 GROUP BY tags
 ORDER BY avg_rating_count DESC;
 
---Q4: THE VISIBILITY BIAS 
+--Q3: THE VISIBILITY BIAS 
 --(Does the listing position correlate with attention(rating_count), independent of quality?)
 SELECT listing_page_no ,
        avg(rating_count) as avg_rating_count,
